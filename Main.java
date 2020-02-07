@@ -50,6 +50,7 @@ class Main {
     System.out.println("Please note this will only work for taxes in Ontario, Canada.");
     System.out.println("Enter your taxable income:");
     income = keyedInput.nextDouble();
+    double origIncome = income;
 
     //get income, do if else to find the bracket they're in, then from that put values into the different bracket variables, then multiply those by constant tax ammounts, then sum, output tax and net income.
 
@@ -63,28 +64,32 @@ class Main {
     if (income > BRACKET_1_SIZE_F)
     {
       bracket1_F = BRACKET_1_SIZE_F;
-      bracket2_F = income - BRACKET_1_SIZE_F;
+      income = income- BRACKET_1_SIZE_F;
+      bracket2_F = income;
       System.out.println("Your taxable income is above Federal bracket 1.");
     }
     
     if (income > BRACKET_2_SIZE_F)
     {
       bracket2_F = BRACKET_2_SIZE_F;
-      bracket3_F = income - BRACKET_1_SIZE_F - BRACKET_2_SIZE_F;
+      income = income- BRACKET_2_SIZE_F;
+      bracket3_F = income;
       System.out.println("Your taxable income is above Federal bracket 2.");
     }
     
     if (income > BRACKET_3_SIZE_F)
     {
       bracket3_F = BRACKET_3_SIZE_F;
-      bracket4_F = income - BRACKET_1_SIZE_F - BRACKET_2_SIZE_F - BRACKET_3_SIZE_F;
+      income = income- BRACKET_3_SIZE_F;
+      bracket4_F = income;
       System.out.println("Your taxable income is above Federal bracket 3.");
     }
 
     if (income > BRACKET_4_SIZE_F)
     {
       bracket4_F = BRACKET_4_SIZE_F;
-      bracket5_F = income - BRACKET_1_SIZE_F - BRACKET_2_SIZE_F - BRACKET_3_SIZE_F - BRACKET_4_SIZE_F;
+      income = income- BRACKET_4_SIZE_F;
+      bracket5_F = income;
       System.out.println("Your taxable income is above Federal bracket 4.");
     }
 
@@ -103,60 +108,10 @@ class Main {
 
     System.out.println("Federal Tax: $" + federalTax);
 
-    //FIGURE OUT PROVINCIAL BRACKET
-    if (true)
-    {
-      bracket1_P = income;
-      System.out.println("Your taxable income is above Provincial bracket 0.");
-    }
-
-    if (income > BRACKET_1_SIZE_P)
-    {
-      bracket1_P = BRACKET_1_SIZE_P;
-      bracket2_P = income - BRACKET_1_SIZE_P;
-      System.out.println("Your taxable income is above Provincial bracket 1.");
-    }
-    
-    if (income > BRACKET_2_SIZE_P)
-    {
-      bracket2_P = BRACKET_2_SIZE_P;
-      bracket3_P = income - BRACKET_1_SIZE_P - BRACKET_2_SIZE_F;
-      System.out.println("Your taxable income is above Provincial bracket 2.");
-    }
-    
-    if (income > BRACKET_3_SIZE_P)
-    {
-      bracket3_P = BRACKET_3_SIZE_P;
-      bracket4_P = income - BRACKET_1_SIZE_P - BRACKET_2_SIZE_P - BRACKET_3_SIZE_P;
-      System.out.println("Your taxable income is above Provincial bracket 3.");
-    }
-
-    if (income > BRACKET_4_SIZE_P)
-    {
-      bracket4_P = BRACKET_4_SIZE_P;
-      bracket5_P = income - BRACKET_1_SIZE_P - BRACKET_2_SIZE_P - BRACKET_3_SIZE_P - BRACKET_4_SIZE_P;
-      System.out.println("Your taxable income is above Provincial bracket 4.");
-    }
-
-    //dump bracket values
-    System.out.println(bracket1_P);
-    System.out.println(bracket2_P);
-    System.out.println(bracket3_P);
-    System.out.println(bracket4_P);
-    System.out.println(bracket5_P);
-
-    provincialTax = bracket1_P * BRACKET_1_TAX_P;
-    provincialTax = provincialTax + (bracket2_P * BRACKET_2_TAX_P);
-    provincialTax = provincialTax + (bracket3_P * BRACKET_3_TAX_P);
-    provincialTax = provincialTax + (bracket4_P * BRACKET_4_TAX_P);
-    provincialTax = provincialTax + (bracket5_P * BRACKET_5_TAX_P);
-
-    System.out.println("Provincial Tax: $" + provincialTax);
-
-    double totalTax = provincialTax + federalTax;
+    double totalTax = federalTax;
     System.out.println("Total Tax: $" + totalTax);
 
-    double netIncome = income - federalTax - provincialTax;
+    double netIncome = income - federalTax;
 
     System.out.println("Net Income: $" + netIncome);
 
